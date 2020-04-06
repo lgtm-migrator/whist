@@ -1,2 +1,3 @@
 # whist
-Dash whist rules
+
+A whist game implemented with danish rules.
