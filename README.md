@@ -1,0 +1,2 @@
+# whist
+Dash whist rules
