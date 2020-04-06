@@ -2,9 +2,7 @@
 
 namespace Whist.Rules.Tests
 {
-    using System.Linq;
-
-    public sealed class SansTests
+    public sealed class SoloBidTests
     {
         // TODO(jorgen.fogh): Write move generator.
         // TODO(jorgen.fogh): Write move executor.
@@ -18,12 +16,10 @@ namespace Whist.Rules.Tests
         [TestCase("S7 C9 S6 S4", 0)]
         [TestCase("J C9 S6 S4", 0)]
         [TestCase("S7 J S6 S4", 0)]
-        [TestCase("S1 J S6 S4", 0)]
-        public void EvaluateTrick(string input, int winnerIndex)
+        [TestCase("S1 J S6 S4", 2)]
+        public void EvaluateTrick(string cardsPlayed, int winnerIndex)
         {
-            var cards = input.Split(' ').Select(c => new Card(c)).ToArray();
-            var bid = new Sans();
-            Assert.That(bid.EvaluateTrick(cards), Is.EqualTo(winnerIndex));
+            AbstractBidTests.TestEvaluateTrick(new SoloBid(), cardsPlayed, winnerIndex);
         }
     }
 }
