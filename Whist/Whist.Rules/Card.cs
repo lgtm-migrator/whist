@@ -6,22 +6,20 @@
     {
         private readonly string _name;
 
-        private const char Spades = '♠';
-        private const char Hearts = '♡';
-        private const char Diamond = '♢';
-        private const char Clubs = '♣';
+        private const char Spades = 'S';
+        private const char Hearts = 'H';
+        private const char Diamond = 'D';
+        private const char Clubs = 'C';
         private const char Joker = 'J';
 
         public char Suit => this._name[0];
 
         public bool IsJoker => this._name[0] == Joker;
 
-        public int Value
+        public int FaceValue
         {
             get
             {
-                if (this._name.Substring(1) == "Ace")
-                    return 1;
                 switch (this._name[1])
                 {
                     case 'K':
