@@ -39,5 +39,30 @@
         /// </summary>
         /// <param name="name">TODO(jorgen.fogh): Describe the format.</param>
         public Card(string name) => this._name = name ?? throw new ArgumentNullException(nameof(name));
+
+        private bool Equals(Card other)
+        {
+            return this._name == other._name;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return ReferenceEquals(this, obj) || obj is Card other && this.Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return this._name.GetHashCode();
+        }
+
+        public static bool operator ==(Card left, Card right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(Card left, Card right)
+        {
+            return !Equals(left, right);
+        }
     }
 }
