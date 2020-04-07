@@ -4,7 +4,6 @@ namespace Whist.Rules.Tests
 {
     public sealed class CardTests
     {
-
         [Test]
         [TestCase("S5")]
         [TestCase("C2")]
