@@ -16,23 +16,14 @@
 
         public bool IsJoker => this._name[0] == Joker;
 
-        public int FaceValue
-        {
-            get
+        public int FaceValue =>
+            this._name[1] switch
             {
-                switch (this._name[1])
-                {
-                    case 'K':
-                        return 13;
-                    case 'Q':
-                        return 12;
-                    case 'J':
-                        return 11;
-                    default:
-                        return int.Parse(this._name.Substring(1));
-                }
-            }
-        }
+                'K' => 13,
+                'Q' => 12,
+                'J' => 11,
+                _ => int.Parse(this._name.Substring(1))
+            };
 
         /// <summary>
         /// Creates a playing card.

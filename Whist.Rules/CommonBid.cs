@@ -4,10 +4,7 @@
     {
         private readonly char _trump;
 
-        public CommonBid(char trump)
-        {
-            this._trump = trump;
-        }
+        public CommonBid(char trump) => this._trump = trump;
 
         protected override bool IsCandidateBetterThanCurrentBest(Card candidate, Card currentBest)
         {

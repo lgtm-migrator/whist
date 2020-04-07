@@ -7,7 +7,7 @@
             if (cards[0].IsJoker)
                 return 0;
             var result = 0;
-            for (var i = 0; i < 4; i++)
+            for (var i = 1; i < 4; i++)
                 if (this.IsCandidateBetterThanCurrentBest(cards[i], cards[result]))
                     result = i;
             return result;
