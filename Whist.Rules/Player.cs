@@ -6,14 +6,11 @@
     public sealed class Player
     {
         public readonly string Name;
-        public readonly List<Card> Cards;
+        public readonly List<Card> Hand = new List<Card>();
 
-        public Player(string name, List<Card> cards)
+        public Player(string name)
         {
-            if (cards == null) throw new ArgumentNullException(nameof(cards));
-            if (cards.Count == 0) throw new ArgumentException("Value cannot be an empty collection.", nameof(cards));
             this.Name = name ?? throw new ArgumentNullException(nameof(name));
-            this.Cards = cards;
         }
     }
 }

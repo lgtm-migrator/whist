@@ -1,7 +1,6 @@
-﻿using NUnit.Framework;
-
-namespace Whist.Rules.Tests
+﻿namespace Whist.Rules.Tests
 {
+    using NUnit.Framework;
     using System.Linq;
 
     internal static class AbstractBidTests
