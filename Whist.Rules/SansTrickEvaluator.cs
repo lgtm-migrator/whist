@@ -1,6 +1,6 @@
 ﻿namespace Whist.Rules
 {
-    public sealed class SansBid : Bid
+    public sealed class SansTrickEvaluator : TrickEvaluator
     {
         protected override bool IsCandidateBetterThanCurrentBest(Card candidate, Card currentBest)
         {

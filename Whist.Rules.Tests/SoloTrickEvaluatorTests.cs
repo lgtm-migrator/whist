@@ -2,7 +2,7 @@
 
 namespace Whist.Rules.Tests
 {
-    public sealed class SansBidTests
+    public sealed class SoloTrickEvaluatorTests
     {
         // TODO(jorgen.fogh): Write move generator.
         // TODO(jorgen.fogh): Write move executor.
@@ -16,10 +16,10 @@ namespace Whist.Rules.Tests
         [TestCase("S7 C9 S6 S4", 0)]
         [TestCase("J C9 S6 S4", 0)]
         [TestCase("S7 J S6 S4", 0)]
-        [TestCase("S1 J S6 S4", 0)]
+        [TestCase("S1 J S6 S4", 2)]
         public void EvaluateTrick(string cardsPlayed, int winnerIndex)
         {
-            AbstractBidTests.TestEvaluateTrick(new SansBid(), cardsPlayed, winnerIndex);
+            AbstractTrickEvaluatorTests.TestEvaluateTrick(new SoloTrickEvaluator(), cardsPlayed, winnerIndex);
         }
     }
 }

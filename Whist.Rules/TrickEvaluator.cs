@@ -1,6 +1,6 @@
 ﻿namespace Whist.Rules
 {
-    public abstract class Bid
+    public abstract class TrickEvaluator
     {
         public int EvaluateTrick(Card[] cards)
         {

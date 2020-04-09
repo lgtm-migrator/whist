@@ -2,7 +2,7 @@
 
 namespace Whist.Rules.Tests
 {
-    public sealed class CommonBidTests
+    public sealed class CommonTrickEvaluatorTests
     {
         // TODO(jorgen.fogh): Write move generator.
         // TODO(jorgen.fogh): Write move executor.
@@ -21,7 +21,7 @@ namespace Whist.Rules.Tests
         [TestCase('C', "S1 J C4 C6", 3)]
         public void EvaluateTrick(char trump, string cardsPlayed, int winnerIndex)
         {
-            AbstractBidTests.TestEvaluateTrick(new CommonBid(trump), cardsPlayed, winnerIndex);
+            AbstractTrickEvaluatorTests.TestEvaluateTrick(new CommonTrickEvaluator(trump), cardsPlayed, winnerIndex);
         }
     }
 }
