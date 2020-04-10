@@ -4,9 +4,6 @@ namespace Whist.Rules.Tests
 {
     public sealed class SansTrickEvaluatorTests
     {
-        // TODO(jorgen.fogh): Write move generator.
-        // TODO(jorgen.fogh): Write move executor.
-
         [Test]
         [TestCase("S2 S3 S4 S5", 3)]
         [TestCase("S2 S3 S5 S4", 2)]

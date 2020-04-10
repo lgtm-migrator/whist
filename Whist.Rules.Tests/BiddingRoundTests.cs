@@ -1,7 +1,6 @@
-﻿using NUnit.Framework;
-
-namespace Whist.Rules.Tests
+﻿namespace Whist.Rules.Tests
 {
+    using NUnit.Framework;
     using System.Linq;
 
     public sealed class BiddingRoundTests
@@ -55,7 +54,5 @@ namespace Whist.Rules.Tests
             Assert.That(round.Winner, Is.EqualTo(winner));
             Assert.That(round.WinningBid, Is.EqualTo(winningBid));
         }
-
-
     }
 }

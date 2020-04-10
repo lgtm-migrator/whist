@@ -6,10 +6,6 @@
     {
         private readonly string _name;
 
-        private const char Spades = 'S';
-        private const char Hearts = 'H';
-        private const char Diamond = 'D';
-        private const char Clubs = 'C';
         private const char Joker = 'J';
 
         public char Suit => this._name[0];
@@ -25,10 +21,6 @@
                 _ => int.Parse(this._name.Substring(1))
             };
 
-        /// <summary>
-        /// Creates a playing card.
-        /// </summary>
-        /// <param name="name">TODO(jorgen.fogh): Describe the format.</param>
         public Card(string name) => this._name = name ?? throw new ArgumentNullException(nameof(name));
 
         private bool Equals(Card other)
