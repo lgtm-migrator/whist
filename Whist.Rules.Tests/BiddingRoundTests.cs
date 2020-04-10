@@ -32,6 +32,7 @@ namespace Whist.Rules.Tests
             var round = new BiddingRound();
             foreach (var bid in bids)
                 round.Bid(bid);
+            Assert.That(round.IsBiddingDone, Is.False);
             Assert.That(round.PlayerToBid, Is.EqualTo(playerToBid));
         }
 
@@ -50,6 +51,7 @@ namespace Whist.Rules.Tests
             var round = new BiddingRound();
             foreach (var bid in bids)
                 round.Bid(bid);
+            Assert.That(round.IsBiddingDone, Is.True);
             Assert.That(round.Winner, Is.EqualTo(winner));
             Assert.That(round.WinningBid, Is.EqualTo(winningBid));
         }

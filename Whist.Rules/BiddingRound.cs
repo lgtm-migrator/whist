@@ -22,6 +22,8 @@
             PlayerToBid = _playerAsTurn ? _playerA : _playerB;
         }
 
+        public bool IsBiddingDone =>
+            PlayerToBid == 4;
         public int PlayerToBid { get; private set; }
         public int Winner { get; private set; }
         public string WinningBid { get; private set; }
