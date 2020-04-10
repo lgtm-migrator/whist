@@ -5,12 +5,11 @@
 
     public sealed class Player
     {
-        public readonly string Name;
-        public readonly List<Card> Hand = new List<Card>();
+        public readonly List<Card> Hand;
 
-        public Player(string name)
+        public Player(List<Card> hand)
         {
-            this.Name = name ?? throw new ArgumentNullException(nameof(name));
+            Hand = hand;
         }
     }
 }

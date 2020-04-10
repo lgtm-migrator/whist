@@ -1,8 +1,10 @@
-﻿namespace Whist.Rules
+﻿using System.Collections.Generic;
+
+namespace Whist.Rules
 {
     public abstract class TrickEvaluator
     {
-        public int EvaluateTrick(Card[] cards)
+        public int EvaluateTrick(IList<Card> cards)
         {
             if (cards[0].IsJoker)
                 return 0;
