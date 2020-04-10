@@ -28,11 +28,10 @@ namespace Whist.Rules.Tests
                   "Player A bids 9 common", 2)]
         public void PlayerToBid(string transcript, int playerToBid)
         {
-            // TODO(jorgen.fogh): Test that we start with 0.
-            var bids = transcript.Split('\n').Select(line => line.Split(" bids "));
+            var bids = transcript.Split('\n').Select(line => line.Split(" bids ")[1]);
             var round = new BiddingRound();
             foreach (var bid in bids)
-                round.Bid(bid[0], bid[1]);
+                round.Bid(bid);
             Assert.That(round.PlayerToBid, Is.EqualTo(playerToBid));
         }
 
@@ -40,17 +39,17 @@ namespace Whist.Rules.Tests
         [TestCase("Player A bids pass\n" +
                   "Player B bids pass\n" +
                   "Player C bids pass\n" +
-                  "Player D bids 9 common", "Player D", "9 common")]
+                  "Player D bids 9 common", 3, "9 common")]
         [TestCase("Player A bids pass\n" +
                   "Player B bids pass\n" +
                   "Player C bids 7 sans\n" +
-                  "Player D bids pass", "Player C", "7 sans")]
-        public void CorrectBidWins(string transcript, string winner, string winningBid)
+                  "Player D bids pass", 2, "7 sans")]
+        public void CorrectBidWins(string transcript, int winner, string winningBid)
         {
-            var bids = transcript.Split('\n').Select(line => line.Split(" bids "));
+            var bids = transcript.Split('\n').Select(line => line.Split(" bids ")[1]);
             var round = new BiddingRound();
             foreach (var bid in bids)
-                round.Bid(bid[0], bid[1]);
+                round.Bid(bid);
             Assert.That(round.Winner, Is.EqualTo(winner));
             Assert.That(round.WinningBid, Is.EqualTo(winningBid));
         }

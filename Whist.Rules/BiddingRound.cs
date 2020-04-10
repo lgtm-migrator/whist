@@ -6,7 +6,7 @@
         private int _playerB = 1;
         private bool _playerAsTurn = true;
 
-        public void Bid(string bidder, string bid)
+        public void Bid(string bid)
         {
             if (bid == "pass")
             {
@@ -16,14 +16,14 @@
             else
             {
                 _playerAsTurn = !_playerAsTurn;
-                this.Winner = bidder;
+                this.Winner = PlayerToBid;
                 this.WinningBid = bid;
             }
             PlayerToBid = _playerAsTurn ? _playerA : _playerB;
         }
 
         public int PlayerToBid { get; private set; }
-        public string Winner { get; private set; }
+        public int Winner { get; private set; }
         public string WinningBid { get; private set; }
     }
 }
