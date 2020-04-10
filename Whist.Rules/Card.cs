@@ -6,11 +6,11 @@
     {
         private readonly string _name;
 
-        private const char Joker = 'J';
+        private const string Joker = "Joker";
 
         public char Suit => this._name[0];
 
-        public bool IsJoker => this._name[0] == Joker;
+        public bool IsJoker => this._name == Joker;
 
         public int FaceValue =>
             this._name[1] switch
