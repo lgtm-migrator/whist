@@ -16,9 +16,9 @@
         public int? Play(Card card)
         {
             _cardsInTrick.Add(card);
-            PlayerToPlay = (PlayerToPlay + 1) % 4;
             if (_cardsInTrick.Count == 4)
                 return WinnerTakesTrick();
+            PlayerToPlay = (PlayerToPlay + 1) % 4;
             return null;
         }
 
@@ -26,6 +26,7 @@
         {
             var winner = _evaluator.EvaluateTrick(_cardsInTrick);
             _cardsInTrick.Clear();
+            PlayerToPlay = winner;
             return winner;
         }
 

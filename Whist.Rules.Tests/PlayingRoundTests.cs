@@ -24,16 +24,16 @@ namespace Whist.Rules.Tests
         [TestCase("H3\n" +
                   "H4\n" +
                   "H5\n" +
-                  "H2", 0, 2)]
+                  "H2", 2, 2)]
         [TestCase("H3\n" +
                   "H4\n" +
                   "H5\n" +
-                  "H7", 0, 3)]
+                  "H7", 3, 3)]
         [TestCase("H3\n" +
                   "H4\n" +
                   "H5\n" +
                   "H7\n" +
-                  "C10", 1, null)]
+                  "C10", 0, null)]
         public void Play(string cardNames, int playerToPlay, int? trickTaker)
         {
             var evaluator = new SansTrickEvaluator();
