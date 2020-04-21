@@ -47,5 +47,10 @@
         {
             return !Equals(left, right);
         }
+
+        public override string ToString()
+        {
+            return this._name;
+        }
     }
 }
