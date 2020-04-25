@@ -17,12 +17,25 @@
     position: relative;
 }
 
+.cat {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+}
+
 .hand {
     position: absolute;
     bottom: 20px;
     left: 50%;
     -webkit-transform: translateX(-50%);
-    transform: translateX(-50%)
+    transform: translateX(-50%);
+}
+
+.hand .card {
+    margin-right: -180px;
 }
 
 .card {
@@ -34,7 +47,6 @@
     /* The card can be resized here and the image will adjust accordingly: */
     width: 214px;
     height: 296px;
-    margin-right: -180px;
 }
 
 .card:before {
