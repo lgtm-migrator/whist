@@ -1,17 +1,29 @@
 ﻿import React from "react";
+import Card from "./Card.js"
 
-function Card(props) {
-    function clickCard() {
-        // TODO(jorgen.fogh): Play the card!
+export default class Hand extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selected: null
+        };
     }
-    return (<div className={"card " + props.name} onClick={clickCard}></div>);
-}
 
-export function Hand(props) {
-    let cards = [];
-    for (let i = 0; i < props.cards.length; i++)
-        cards.push(<Card name={props.cards[i]}></Card>);
-    return (<div className="hand">
-        { cards }
-        </div>);
+    clickCard(cardName)
+    {
+        if (this.state.selected === cardName)
+            this.setState({ selected: null });
+        else
+            this.setState({ selected: cardName });
+    }
+
+    render() {
+        const cardComponents = [];
+        const cards = this.props.cards;
+        for (let i = 0; i < cards.length; i++)
+            cardComponents.push(<Card key={cards[i]} name={cards[i]} clickCard={(cardName) => this.clickCard(cardName)} selected={this.state.selected === cards[i]}></Card>);
+        return (<div className="hand">
+            { cardComponents }
+            </div>);
+    }
 }

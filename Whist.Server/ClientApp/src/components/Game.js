@@ -1,14 +1,11 @@
 ﻿import React from "react";
-import { Hand } from "./Hand.js";
+import Hand from "./Hand.js";
+import Cat from "./Cat.js";
 import "./Game.css";
 
 export function Game(props) {
     return (<div className="game-background">
-        <div className="cat">
-            <div className="card C2"></div>
-            <div className="card S5"></div>
-            <div className="card HQ"></div>
-        </div>
+        <Cat cards={["C2", "S5", "HQ"]} />
         <Hand cards={["C1", "D3", "SQ"]} />
         </div>);
 }

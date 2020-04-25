@@ -38,6 +38,10 @@
     margin-right: -180px;
 }
 
+.hand .card.selected {
+    bottom: 40px;
+}
+
 .card {
     display: inline-block;
     margin: 10px;
