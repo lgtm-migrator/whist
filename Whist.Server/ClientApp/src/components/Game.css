@@ -21,212 +21,224 @@
     padding: 7px;
     border-radius: 20px;
     border: 0;
+    /* The card can be resized here and the image will adjust accordingly: */
+    width: 214px;
+    height: 296px;
+}
+
+.card:before {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    content: "";
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .card.C1:before {
-    content: url("../card assets/clubs/1c.svg");
+    background-image: url("../card assets/clubs/1c.svg");
 }
 
 .card.C2:before {
-    content: url("../card assets/clubs/2c.svg");
+    background-image: url("../card assets/clubs/2c.svg");
 }
 
 .card.C3:before {
-    content: url("../card assets/clubs/3c.svg");
+    background-image: url("../card assets/clubs/3c.svg");
 }
 
 .card.C4:before {
-    content: url("../card assets/clubs/4c.svg");
+    background-image: url("../card assets/clubs/4c.svg");
 }
 
 .card.C5:before {
-    content: url("../card assets/clubs/5c.svg");
+    background-image: url("../card assets/clubs/5c.svg");
 }
 
 .card.C6:before {
-    content: url("../card assets/clubs/6c.svg");
+    background-image: url("../card assets/clubs/6c.svg");
 }
 
 .card.C7:before {
-    content: url("../card assets/clubs/7c.svg");
+    background-image: url("../card assets/clubs/7c.svg");
 }
 
 .card.C8:before {
-    content: url("../card assets/clubs/8c.svg");
+    background-image: url("../card assets/clubs/8c.svg");
 }
 
 .card.C9:before {
-    content: url("../card assets/clubs/9c.svg");
+    background-image: url("../card assets/clubs/9c.svg");
 }
 
 .card.C10:before {
-    content: url("../card assets/clubs/10c.svg");
+    background-image: url("../card assets/clubs/10c.svg");
 }
 
 .card.CJ:before {
-    content: url("../card assets/clubs/jc.svg");
+    background-image: url("../card assets/clubs/jc.svg");
 }
 
 .card.CQ:before {
-    content: url("../card assets/clubs/qc.svg");
+    background-image: url("../card assets/clubs/qc.svg");
 }
 
 .card.CK:before {
-    content: url("../card assets/clubs/kc.svg");
+    background-image: url("../card assets/clubs/kc.svg");
 }
 
 .card.D1:before {
-    content: url("../card assets/diamonds/1d.svg");
+    background-image: url("../card assets/diamonds/1d.svg");
 }
 
 .card.D2:before {
-    content: url("../card assets/diamonds/2d.svg");
+    background-image: url("../card assets/diamonds/2d.svg");
 }
 
 .card.D3:before {
-    content: url("../card assets/diamonds/3d.svg");
+    background-image: url("../card assets/diamonds/3d.svg");
 }
 
 .card.D4:before {
-    content: url("../card assets/diamonds/4d.svg");
+    background-image: url("../card assets/diamonds/4d.svg");
 }
 
 .card.D5:before {
-    content: url("../card assets/diamonds/5d.svg");
+    background-image: url("../card assets/diamonds/5d.svg");
 }
 
 .card.D6:before {
-    content: url("../card assets/diamonds/6d.svg");
+    background-image: url("../card assets/diamonds/6d.svg");
 }
 
 .card.D7:before {
-    content: url("../card assets/diamonds/7d.svg");
+    background-image: url("../card assets/diamonds/7d.svg");
 }
 
 .card.D8:before {
-    content: url("../card assets/diamonds/8d.svg");
+    background-image: url("../card assets/diamonds/8d.svg");
 }
 
 .card.D9:before {
-    content: url("../card assets/diamonds/9d.svg");
+    background-image: url("../card assets/diamonds/9d.svg");
 }
 
 .card.D10:before {
-    content: url("../card assets/diamonds/10d.svg");
+    background-image: url("../card assets/diamonds/10d.svg");
 }
 
 .card.DJ:before {
-    content: url("../card assets/diamonds/jd.svg");
+    background-image: url("../card assets/diamonds/jd.svg");
 }
 
 .card.DQ:before {
-    content: url("../card assets/diamonds/qd.svg");
+    background-image: url("../card assets/diamonds/qd.svg");
 }
 
 .card.DK:before {
-    content: url("../card assets/diamonds/kd.svg");
+    background-image: url("../card assets/diamonds/kd.svg");
 }
 
 .card.H1:before {
-    content: url("../card assets/hearts/1h.svg");
+    background-image: url("../card assets/hearts/1h.svg");
 }
 
 .card.H2:before {
-    content: url("../card assets/hearts/2h.svg");
+    background-image: url("../card assets/hearts/2h.svg");
 }
 
 .card.H3:before {
-    content: url("../card assets/hearts/3h.svg");
+    background-image: url("../card assets/hearts/3h.svg");
 }
 
 .card.H4:before {
-    content: url("../card assets/hearts/4h.svg");
+    background-image: url("../card assets/hearts/4h.svg");
 }
 
 .card.H5:before {
-    content: url("../card assets/hearts/5h.svg");
+    background-image: url("../card assets/hearts/5h.svg");
 }
 
 .card.H6:before {
-    content: url("../card assets/hearts/6h.svg");
+    background-image: url("../card assets/hearts/6h.svg");
 }
 
 .card.H7:before {
-    content: url("../card assets/hearts/7h.svg");
+    background-image: url("../card assets/hearts/7h.svg");
 }
 
 .card.H8:before {
-    content: url("../card assets/hearts/8h.svg");
+    background-image: url("../card assets/hearts/8h.svg");
 }
 
 .card.H9:before {
-    content: url("../card assets/hearts/9h.svg");
+    background-image: url("../card assets/hearts/9h.svg");
 }
 
 .card.H10:before {
-    content: url("../card assets/hearts/10h.svg");
+    background-image: url("../card assets/hearts/10h.svg");
 }
 
 .card.HJ:before {
-    content: url("../card assets/hearts/jh.svg");
+    background-image: url("../card assets/hearts/jh.svg");
 }
 
 .card.HQ:before {
-    content: url("../card assets/hearts/qh.svg");
+    background-image: url("../card assets/hearts/qh.svg");
 }
 
 .card.HK:before {
-    content: url("../card assets/hearts/kh.svg");
+    background-image: url("../card assets/hearts/kh.svg");
 }
 
 .card.S1:before {
-    content: url("../card assets/spades/1s.svg");
+    background-image: url("../card assets/spades/1s.svg");
 }
 
 .card.S2:before {
-    content: url("../card assets/spades/2s.svg");
+    background-image: url("../card assets/spades/2s.svg");
 }
 
 .card.S3:before {
-    content: url("../card assets/spades/3s.svg");
+    background-image: url("../card assets/spades/3s.svg");
 }
 
 .card.S4:before {
-    content: url("../card assets/spades/4s.svg");
+    background-image: url("../card assets/spades/4s.svg");
 }
 
 .card.S5:before {
-    content: url("../card assets/spades/5s.svg");
+    background-image: url("../card assets/spades/5s.svg");
 }
 
 .card.S6:before {
-    content: url("../card assets/spades/6s.svg");
+    background-image: url("../card assets/spades/6s.svg");
 }
 
 .card.S7:before {
-    content: url("../card assets/spades/7s.svg");
+    background-image: url("../card assets/spades/7s.svg");
 }
 
 .card.S8:before {
-    content: url("../card assets/spades/8s.svg");
+    background-image: url("../card assets/spades/8s.svg");
 }
 
 .card.S9:before {
-    content: url("../card assets/spades/9s.svg");
+    background-image: url("../card assets/spades/9s.svg");
 }
 
 .card.S10:before {
-    content: url("../card assets/spades/10s.svg");
+    background-image: url("../card assets/spades/10s.svg");
 }
 
 .card.SJ:before {
-    content: url("../card assets/spades/js.svg");
+    background-image: url("../card assets/spades/js.svg");
 }
 
 .card.SQ:before {
-    content: url("../card assets/spades/qs.svg");
+    background-image: url("../card assets/spades/qs.svg");
 }
 
 .card.SK:before {
-    content: url("../card assets/spades/ks.svg");
+    background-image: url("../card assets/spades/ks.svg");
 }
