@@ -10,9 +10,19 @@
 .game-background {
     background-color: #067d00;
     background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+    border: 2px solid #333333;
     height: 100%;
     /* TODO(jorgen.fogh): Find out how to size the game area. */
-    min-height: 500px;
+    min-height: 750px;
+    position: relative;
+}
+
+.hand {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%)
 }
 
 .card {
