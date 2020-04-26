@@ -18,12 +18,8 @@ export default class Hand extends React.Component {
     }
 
     render() {
-        const cardComponents = [];
-        const cards = this.props.cards;
-        for (let i = 0; i < cards.length; i++)
-            cardComponents.push(<Card key={cards[i]} name={cards[i]} clickCard={(cardName) => this.clickCard(cardName)} selected={this.state.selected === cards[i]}></Card>);
         return (<div className="hand">
-            { cardComponents }
+            {this.props.cards.map(cardName => <Card key={cardName} name={cardName} clickCard={() => this.clickCard(cardName)} selected={this.state.selected === cardName} />)}
             </div>);
     }
 }
