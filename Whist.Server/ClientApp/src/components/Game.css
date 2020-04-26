@@ -26,6 +26,13 @@
     width: 100%;
 }
 
+.ace-picker {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
 .hand {
     position: absolute;
     bottom: 20px;
