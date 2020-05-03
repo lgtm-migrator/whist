@@ -1,5 +1,5 @@
 # whist
-![LGTM Alerts](https://img.shields.io/lgtm/alerts/github/jrgfogh/whist)
+[![LGTM Alerts](https://img.shields.io/lgtm/alerts/github/jrgfogh/whist)](https://lgtm.com/projects/g/jrgfogh/whist/alerts/)
 
 
 A whist game implemented with danish rules.
