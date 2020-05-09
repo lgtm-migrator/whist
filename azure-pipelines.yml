@@ -34,6 +34,7 @@ stages:
   jobs:
   - deployment: deploy
     displayName: Deploy
+    environment: jrgfogh
     strategy: 
       runOnce:
         deploy:
