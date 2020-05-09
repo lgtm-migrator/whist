@@ -24,7 +24,7 @@ stages:
       inputs:
         command: publish
         publishWebProjects: True
-        arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+        arguments: '-r linux-x64 --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     - task: PublishPipelineArtifact@1
       displayName: 'Publish Pipeline Artifact'
       inputs:
@@ -50,4 +50,6 @@ stages:
               WebAppName: 'jrgfogh-whist'
               packageForLinux: '$(Pipeline.Workspace)/$(ArtifactName)/*.zip'
               RuntimeStack: 'DOTNETCORE|Latest'
+              enableCustomDeployment: true
+              StartupCommand: 
               DeploymentType: webDeploy
