@@ -48,5 +48,5 @@ stages:
               azureSubscription: 'jrgfogh-whist - Azure'
               appType: webAppLinux
               WebAppName: 'jrgfogh-whist'
-              RuntimeStack: 'DOTNETCORE|Latest'
-              DeploymentType: 'webDeploy'
+              packageForLinux: '$(Pipeline.Workspace)/$(ArtifactName)/*.zip'
+              DeploymentType: zipDeploy
