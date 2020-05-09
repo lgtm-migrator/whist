@@ -25,10 +25,12 @@ stages:
         command: publish
         publishWebProjects: True
         arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    - task: PublishBuildArtifacts@1
-      displayName: 'Publish Artifact'
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish Pipeline Artifact'
       inputs:
-        PathtoPublish: '$(build.artifactstagingdirectory)'
+        targetPath: '$(Build.ArtifactStagingDirectory)'
+        artifact: '$(ArtifactName)'
+        publishLocation: 'pipeline'
 - stage: CD
   displayName: CD Stage
   jobs:
