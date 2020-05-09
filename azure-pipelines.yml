@@ -49,4 +49,4 @@ stages:
               appType: webAppLinux
               WebAppName: 'jrgfogh-whist'
               packageForLinux: '$(Pipeline.Workspace)/$(ArtifactName)/*.zip'
-              DeploymentType: zipDeploy
+              DeploymentType: webDeploy
