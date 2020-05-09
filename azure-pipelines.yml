@@ -49,4 +49,5 @@ stages:
               appType: webAppLinux
               WebAppName: 'jrgfogh-whist'
               packageForLinux: '$(Pipeline.Workspace)/$(ArtifactName)/*.zip'
+              RuntimeStack: 'DOTNETCORE|Latest'
               DeploymentType: webDeploy
