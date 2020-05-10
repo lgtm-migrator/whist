@@ -5,10 +5,17 @@
 
 A whist game implemented with danish rules.
 
-# Technologies used
-The game engine is written in C# on .NET Core.
+# Technologies Used
 
-The UI is written in React.js and hosted on a ASP.NET Core server.
+* C#
+* JavaScript
+* .NET Core
+* SignalR
+* NUnit
+* Azure
+  * Linux Web App
+  * SignalR Service
+* React
 
 ## Card Assets
 The images used for the playing cards are from

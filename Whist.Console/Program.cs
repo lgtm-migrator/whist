@@ -5,12 +5,16 @@ using System.Threading.Tasks.Dataflow;
 namespace Whist.Console
 {
     using System;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.SignalR.Client;
     using Rules;
 
     public static class Program
     {
-        private static readonly string[] playerNames =
+        private static readonly string[] PlayerNames =
         {
             "Albert",
             "Bruno",
@@ -18,31 +22,45 @@ namespace Whist.Console
             "David"
         };
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Console.WriteLine("Welcome to the whist console!");
-            Console.WriteLine("Dealing cards:");
-            var deck = new Deck();
-            foreach (var name in playerNames)
-                DealCards(deck, name);
+            var serverUri = PromptForServerUrl() + "WhistHub";
+            var connections = await Task.WhenAll(PlayerNames.Select(async player => await OpenConnection(serverUri, player)));
             var (winner, winningBid) = ConductBiddingRound();
-            Console.WriteLine($"{playerNames[winner]} won the bid with {winningBid}");
+            Console.WriteLine($"{PlayerNames[winner]} won the bid with {winningBid}");
             var trump = PromptForTrump(winner, winningBid);
             var ace = PromptForBuddyAce(winner, winningBid);
             // TODO(jorgen.fogh): Exchange cards.
             var round = new PlayingRound(CreateTrickEvaluator(winningBid, trump));
         }
 
-        private static void DealCards(Deck deck, string playerName)
+        private static async Task<HubConnection> OpenConnection(string serverUri, string playerName)
         {
-            Console.Write($"Dealt cards to {playerName}: ");
-            var cards = deck.DealCards(13);
-            Console.WriteLine(string.Join(' ', cards));
+            void WriteMessage(string message)
+            {
+                Console.WriteLine($"{playerName} received message: {message}");
+            }
+
+            Console.WriteLine($"Opening a SignalR connection for {playerName}...");
+            var connection = new HubConnectionBuilder()
+                .WithUrl(serverUri)
+                .Build();
+            connection.On("ReceiveDealtCards", (List<string> cards) => WriteMessage("You were dealt the cards: " + string.Join(", ", cards)));
+            await connection.StartAsync();
+            Console.WriteLine("Connection opened.");
+            return connection;
+        }
+
+        private static string PromptForServerUrl()
+        {
+            Console.Write("Please input the base URL for the server:");
+            return Console.ReadLine();
         }
 
         private static string PromptForBuddyAce(int winner, string winningBid)
         {
-            Console.WriteLine($"Prompt {playerNames[winner]} for buddy ace:");
+            Console.WriteLine($"Prompt {PlayerNames[winner]} for buddy ace:");
             return Console.ReadLine();
         }
 
@@ -50,7 +68,7 @@ namespace Whist.Console
         {
             if (winningBid.EndsWith("common"))
             {
-                Console.WriteLine($"Prompt {playerNames[winner]} for trump:");
+                Console.WriteLine($"Prompt {PlayerNames[winner]} for trump:");
                 var line = Console.ReadLine();
                 Debug.Assert(line != null, nameof(line) + " != null");
                 return line[0];
@@ -78,7 +96,7 @@ namespace Whist.Console
             var round = new BiddingRound();
             while (!round.IsBiddingDone)
             {
-                Console.WriteLine($"Prompt {playerNames[round.PlayerToBid]} for bid:");
+                Console.WriteLine($"Prompt {PlayerNames[round.PlayerToBid]} for bid:");
                 var bid = Console.ReadLine();
                 round.Bid(bid);
             }
