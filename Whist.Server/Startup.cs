@@ -20,7 +20,7 @@ namespace Whist.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSignalR();
+            services.AddSignalR().AddAzureSignalR();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
