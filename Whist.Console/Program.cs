@@ -8,7 +8,9 @@ namespace Whist.Console
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Connections.Features;
     using Microsoft.AspNetCore.SignalR.Client;
     using Rules;
 
@@ -26,13 +28,9 @@ namespace Whist.Console
         {
             Console.WriteLine("Welcome to the whist console!");
             var serverUri = PromptForServerUrl() + "WhistHub";
-            var connections = await Task.WhenAll(PlayerNames.Select(async player => await OpenConnection(serverUri, player)));
-            var (winner, winningBid) = ConductBiddingRound();
-            Console.WriteLine($"{PlayerNames[winner]} won the bid with {winningBid}");
-            var trump = PromptForTrump(winner, winningBid);
-            var ace = PromptForBuddyAce(winner, winningBid);
-            // TODO(jorgen.fogh): Exchange cards.
-            var round = new PlayingRound(CreateTrickEvaluator(winningBid, trump));
+            var connections = await Task.WhenAll(PlayerNames.Select(async player =>
+                await OpenConnection(serverUri, player)));
+            await Task.Delay(5000000);
         }
 
         private static async Task<HubConnection> OpenConnection(string serverUri, string playerName)
@@ -46,10 +44,27 @@ namespace Whist.Console
             var connection = new HubConnectionBuilder()
                 .WithUrl(serverUri)
                 .Build();
+
+            connection.On("PromptForBid", async () =>
+                await connection.SendAsync("SendBid", playerName, PromptForBid(playerName)));
+            connection.On("PromptForTrump", async () =>
+                await connection.SendAsync("SendTrump", PromptForTrump(playerName)));
+            connection.On("PromptForBuddyAce", async () =>
+                await connection.SendAsync("SendBuddyAce", PromptForBuddyAce(playerName)));
+
             connection.On("ReceiveDealtCards", (List<string> cards) => WriteMessage("You were dealt the cards: " + string.Join(", ", cards)));
+            connection.On("ReceiveBid", (string user, string bid) => WriteMessage($"Received bid \"{bid}\" from \"{user}.\""));
+            connection.On("ReceiveTrump", (string trump) => WriteMessage($"The trump is {trump}."));
+            connection.On("ReceiveBuddyAce", (string buddyAce) => WriteMessage($"The buddy ace is {buddyAce}."));
             await connection.StartAsync();
             Console.WriteLine("Connection opened.");
             return connection;
+        }
+
+        private static string PromptForBid(string playerName)
+        {
+            Console.WriteLine($"Prompt {playerName} for bid:");
+            return Console.ReadLine();
         }
 
         private static string PromptForServerUrl()
@@ -58,50 +73,18 @@ namespace Whist.Console
             return Console.ReadLine();
         }
 
-        private static string PromptForBuddyAce(int winner, string winningBid)
+        private static string PromptForTrump(string playerName)
         {
-            Console.WriteLine($"Prompt {PlayerNames[winner]} for buddy ace:");
+            Console.WriteLine($"Prompt {playerName} for trump:");
+            var line = Console.ReadLine();
+            Debug.Assert(line != null, nameof(line) + " != null");
+            return line;
+        }
+
+        private static string PromptForBuddyAce(string playerName)
+        {
+            Console.WriteLine($"Prompt {playerName} for buddy ace:");
             return Console.ReadLine();
-        }
-
-        private static char PromptForTrump(int winner, string winningBid)
-        {
-            if (winningBid.EndsWith("common"))
-            {
-                Console.WriteLine($"Prompt {PlayerNames[winner]} for trump:");
-                var line = Console.ReadLine();
-                Debug.Assert(line != null, nameof(line) + " != null");
-                return line[0];
-            }
-            return 'C';
-        }
-
-        // TODO(jorgen.fogh): Move this factory method and test it!
-        private static TrickEvaluator CreateTrickEvaluator(string winningBid, char trump)
-        {
-            var bidKind = winningBid.Split(' ')[1];
-            return bidKind switch
-            {
-                // ReSharper disable once PossibleInvalidOperationException
-                "common" => new CommonTrickEvaluator(trump),
-                "good" => new CommonTrickEvaluator(trump),
-                "sans" => new SansTrickEvaluator(),
-                "solo" => new SoloTrickEvaluator(),
-                _ => throw new Exception($"Invalid bid: {winningBid}.")
-            };
-        }
-
-        private static (int Winner, string WinningBid) ConductBiddingRound()
-        {
-            var round = new BiddingRound();
-            while (!round.IsBiddingDone)
-            {
-                Console.WriteLine($"Prompt {PlayerNames[round.PlayerToBid]} for bid:");
-                var bid = Console.ReadLine();
-                round.Bid(bid);
-            }
-
-            return (round.Winner, round.WinningBid);
         }
     }
 }

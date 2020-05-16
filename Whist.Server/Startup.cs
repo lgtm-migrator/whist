@@ -11,7 +11,7 @@ namespace Whist.Server
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -21,6 +21,9 @@ namespace Whist.Server
         {
             services.AddControllersWithViews();
             services.AddSignalR().AddAzureSignalR();
+
+            services.AddSingleton<GameConductorService>();
+            services.AddHostedService<GameConductorServiceWrapper>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

@@ -2,11 +2,15 @@ namespace Whist.Server
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Rules;
 
     public interface IWhistClient
     {
-        Task ReceiveBid(string user, string bid);
+        Task PromptForBid();
+        Task PromptForTrump();
+        Task PromptForBuddyAce();
         Task ReceiveDealtCards(IEnumerable<string> cards);
+        Task ReceiveBid(string user, string bid);
+        Task ReceiveTrump(string trump);
+        Task ReceiveBuddyAce(string buddyAce);
     }
 }

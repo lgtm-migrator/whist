@@ -8,7 +8,7 @@
 
         public Player(List<Card> hand)
         {
-            Hand = hand;
+            this.Hand = hand;
         }
     }
 }
