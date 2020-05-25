@@ -13,8 +13,7 @@ export class Logout extends Component {
 
         this.state = {
             message: undefined,
-            isReady: false,
-            authenticated: false
+            isReady: false
         };
     }
 
@@ -106,8 +105,7 @@ export class Logout extends Component {
     }
 
     async populateAuthenticationState() {
-        const authenticated = await authService.isAuthenticated();
-        this.setState({ isReady: true, authenticated });
+        this.setState({ isReady: true });
     }
 
     getReturnUrl(state) {
