@@ -28,13 +28,21 @@ namespace Whist.Server
                 options.UseSqlServer(
                     this.Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
             services.AddAuthentication()
+                .AddGoogle(googleOptions =>
+                {
+                    IConfigurationSection googleAuthNSection =
+                        Configuration.GetSection("Authentication:Google");
+
+                    googleOptions.ClientId = googleAuthNSection["ClientId"];
+                    googleOptions.ClientSecret = googleAuthNSection["ClientSecret"];
+                })
                 .AddIdentityServerJwt();
 
             services.AddControllersWithViews();
