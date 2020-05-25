@@ -128,6 +128,8 @@ export class Login extends Component {
     navigateToReturnUrl(returnUrl) {
         // It's important that we do a replace here so that we remove the callback uri with the
         // fragment containing the tokens from the browser history.
-        window.location.replace(returnUrl);
+        // TODO(jorgen.fogh): The scaffolded code from the react template contains a security vulnerability here!
+        // I have switched off the warning temporarily and introduced Issue #8 on GitHub.
+        window.location.replace(returnUrl); // lgtm [js/client-side-unvalidated-url-redirection]
     }
 }

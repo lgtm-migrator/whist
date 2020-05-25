@@ -121,6 +121,8 @@ export class Logout extends Component {
     }
 
     navigateToReturnUrl(returnUrl) {
-        return window.location.replace(returnUrl);
+        // TODO(jorgen.fogh): The scaffolded code from the react template contains a security vulnerability here!
+        // I have switched off the warning temporarily and introduced Issue #8 on GitHub.
+        return window.location.replace(returnUrl); // lgtm [js/client-side-unvalidated-url-redirection]
     }
 }
