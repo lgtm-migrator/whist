@@ -52,7 +52,7 @@ export class AuthorizeService {
 
             try {
                 if (this._popUpDisabled) {
-                    throw new Error('Popup disabled. Change \'AuthorizeService.js:AuthorizeService._popupDisabled\' to false to enable it.')
+                    throw new Error('Popup disabled. Change \'AuthorizeService.js:AuthorizeService._popupDisabled\' to false to enable it.');
                 }
 
                 const popUpUser = await this.userManager.signinPopup(this.createArguments());
@@ -99,7 +99,7 @@ export class AuthorizeService {
         await this.ensureUserManagerInitialized();
         try {
             if (this._popUpDisabled) {
-                throw new Error('Popup disabled. Change \'AuthorizeService.js:AuthorizeService._popupDisabled\' to false to enable it.')
+                throw new Error('Popup disabled. Change \'AuthorizeService.js:AuthorizeService._popupDisabled\' to false to enable it.');
             }
 
             await this.userManager.signoutPopup(this.createArguments());

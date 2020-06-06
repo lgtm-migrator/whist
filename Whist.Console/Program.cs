@@ -28,7 +28,7 @@ namespace Whist.Console
         {
             Console.WriteLine("Welcome to the whist console!");
             var serverUri = PromptForServerUrl() + "WhistHub";
-            var connections = await Task.WhenAll(PlayerNames.Select(async player =>
+            await Task.WhenAll(PlayerNames.Select(async player =>
                 await OpenConnection(serverUri, player)));
             await Task.Delay(5000000);
         }
