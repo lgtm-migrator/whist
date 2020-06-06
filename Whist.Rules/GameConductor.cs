@@ -23,9 +23,10 @@
             var (winner, winningBid) = await this.ConductBiddingRound();
             // TODO(jorgen.fogh): Announce the winner?
             var trump = await this.PromptForTrump(winner, winningBid);
-            var ace = await this.PromptForBuddyAce(winner);
+            // TODO(jorgen.fogh): I haven't yet written the code, which will use these variables:
+            var ace = await this.PromptForBuddyAce(winner); // lgtm [cs/useless-assignment-to-local]
             // TODO(jorgen.fogh): Exchange cards.
-            var round = new PlayingRound(CreateTrickEvaluator(winningBid, trump[0]));
+            var round = new PlayingRound(CreateTrickEvaluator(winningBid, trump[0])); // lgtm [cs/useless-assignment-to-local]
         }
 
         private async Task<(int Winner, string WinningBid)> ConductBiddingRound()
