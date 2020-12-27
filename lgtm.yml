@@ -3,4 +3,4 @@ extraction:
      index:
         dotnet:
            arguments: --configuration Release
-           version: 3.1.201
+           version: 5.0.100
