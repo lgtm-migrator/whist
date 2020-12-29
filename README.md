@@ -39,3 +39,5 @@ that the platform version must be changed before the packages can be changed. Ho
 does not seem to be a centralized place to make the change for all projects in the solution.
 Each project file has to be opened and edited manually, since the NuGet UI can still not update
 the packages after the platform has been changed using search&replace.
+
+The Azure Devops had to be updated too, since it kept clearing the "Stack" settings for the Azure App Service.
