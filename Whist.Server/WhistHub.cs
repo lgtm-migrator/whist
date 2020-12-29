@@ -2,12 +2,8 @@ namespace Whist.Server
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Security.Cryptography;
-    using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.SignalR;
-    using Rules;
 
     public sealed class WhistHub : Hub<IWhistClient>
     {
@@ -25,7 +21,7 @@ namespace Whist.Server
 
         public override async Task OnConnectedAsync()
         {
-            await this.Groups.AddToGroupAsync(this.Context.ConnectionId, TableName);;
+            await this.Groups.AddToGroupAsync(this.Context.ConnectionId, TableName);
             ConnectionIdsAtTable.Add(this.Context.ConnectionId);
             if (ConnectionIdsAtTable.Count == 4)
                 this._gameConductorService.StartGame(ConnectionIdsAtTable);

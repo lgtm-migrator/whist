@@ -10,7 +10,7 @@
     {
         private readonly IMovePrompter _movePrompter;
 
-        private static List<Card> _cat;
+        private static List<Card> _cat = new();
 
         public GameConductor(IMovePrompter movePrompter)
         {
@@ -34,7 +34,7 @@
             // TODO(jorgen.fogh): Player 0 should not always start bidding.
             var round = new BiddingRound();
             while (!round.IsBiddingDone) round.Bid(await this._movePrompter.PromptForBid(round.PlayerToBid));
-            return (round.Winner, round.WinningBid);
+            return (round.Winner, round.WinningBid!);
         }
 
         private async Task DealCards()

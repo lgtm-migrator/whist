@@ -26,6 +26,6 @@
         public bool IsBiddingDone => this.PlayerToBid == 4;
         public int PlayerToBid { get; private set; }
         public int Winner { get; private set; }
-        public string WinningBid { get; private set; }
+        public string? WinningBid { get; private set; }
     }
 }

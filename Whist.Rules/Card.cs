@@ -28,7 +28,7 @@
             return this._name == other._name;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return ReferenceEquals(this, obj) || obj is Card other && this.Equals(other);
         }

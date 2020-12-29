@@ -1,18 +1,12 @@
 ﻿using System.Diagnostics;
-using System.Net.Http.Headers;
-using System.Threading.Tasks.Dataflow;
 
 namespace Whist.Console
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
     using System.Linq;
-    using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Connections.Features;
     using Microsoft.AspNetCore.SignalR.Client;
-    using Rules;
 
     public static class Program
     {
