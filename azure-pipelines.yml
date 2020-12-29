@@ -39,19 +39,14 @@ stages:
   - deployment: deploy
     displayName: Deploy
     environment: jrgfogh
-    strategy: 
+    strategy:
       runOnce:
         deploy:
           steps:
-          - task: AzureRmWebAppDeployment@4
+          - task: AzureWebApp@1
             displayName: 'Deploy Azure App Service'
             inputs:
-              ConnectionType: 'AzureRM'
               azureSubscription: 'jrgfogh-whist - Azure'
               appType: webAppLinux
-              WebAppName: 'jrgfogh-whist'
-              packageForLinux: '$(Pipeline.Workspace)/$(ArtifactName)/*.zip'
-              RuntimeStack: 'DOTNETCORE|Latest'
-              enableCustomDeployment: true
-              StartupCommand: 
-              DeploymentType: webDeploy
+              appName: 'jrgfogh-whist'
+              package: '$(Pipeline.Workspace)/$(ArtifactName)/*.zip'
