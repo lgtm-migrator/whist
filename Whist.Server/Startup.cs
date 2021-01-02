@@ -49,7 +49,13 @@ namespace Whist.Server
 
             services.AddControllersWithViews();
             services.AddSignalR().AddAzureSignalR();
+
+#if DEBUG // NOTE(jorgen.fogh): We must check the debug flag at compile time, since the NuGet package is excluded from release builds.
+            var builder = services.AddRazorPages();
+            builder.AddRazorRuntimeCompilation();
+#else
             services.AddRazorPages();
+#endif
 
             services.AddSingleton<GameConductorService>();
             services.AddHostedService<GameConductorServiceWrapper>();
