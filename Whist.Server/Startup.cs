@@ -7,11 +7,6 @@ using Microsoft.Extensions.Hosting;
 
 namespace Whist.Server
 {
-    using Data;
-    using Microsoft.AspNetCore.Authentication;
-    using Microsoft.EntityFrameworkCore;
-    using Models;
-
     public sealed class Startup
     {
         public Startup(IConfiguration configuration)
@@ -24,38 +19,8 @@ namespace Whist.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDatabaseDeveloperPageExceptionFilter();
-
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    this.Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddDefaultIdentity<ApplicationUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-
-            services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
-
-            services.AddAuthentication()
-                .AddGoogle(googleOptions =>
-                {
-                    IConfigurationSection googleAuthNSection =
-                        Configuration.GetSection("Authentication:Google");
-
-                    googleOptions.ClientId = googleAuthNSection["ClientId"];
-                    googleOptions.ClientSecret = googleAuthNSection["ClientSecret"];
-                })
-                .AddIdentityServerJwt();
-
             services.AddControllersWithViews();
             services.AddSignalR().AddAzureSignalR();
-
-#if DEBUG // NOTE(jorgen.fogh): We must check the debug flag at compile time, since the NuGet package is excluded from release builds.
-            var builder = services.AddRazorPages();
-            builder.AddRazorRuntimeCompilation();
-#else
-            services.AddRazorPages();
-#endif
 
             services.AddSingleton<GameConductorService>();
             services.AddHostedService<GameConductorServiceWrapper>();
@@ -73,7 +38,6 @@ namespace Whist.Server
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseMigrationsEndPoint();
             }
             else
             {
@@ -88,17 +52,12 @@ namespace Whist.Server
 
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseIdentityServer();
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
                 endpoints.MapHub<WhistHub>("/WhistHub");
-                endpoints.MapRazorPages();
             });
 
             app.UseSpa(spa =>
