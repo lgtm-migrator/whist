@@ -26,7 +26,7 @@ namespace Whist.Server
         public override async Task OnConnectedAsync()
         {
             await this.Groups.AddToGroupAsync(this.Context.ConnectionId, TableName);
-            await this.Clients.Group(TableName).UpdateListOfTables(TableNames);
+            await this.Clients.All.UpdateListOfTables(TableNames);
             await base.OnConnectedAsync();
         }
 
@@ -45,13 +45,17 @@ namespace Whist.Server
             ConnectionIdsAtTable.Add(this.Context.ConnectionId);
             if (ConnectionIdsAtTable.Count == 4)
                 this._gameConductorService.StartGame(ConnectionIdsAtTable);
-            await this.Clients.Group(TableName).UpdatePlayersAtTable(ConnectionIdsAtTable);
+            await this.Clients.Group(table).UpdatePlayersAtTable(ConnectionIdsAtTable);
         }
 
         public async Task SaveTableName(string key, string text)
         {
             TableNames[0].Text = text;
-            await this.Clients.Group(TableName).UpdateListOfTables(TableNames);
+            await this.Clients.All.UpdateListOfTables(TableNames);
+        }
+
+        public async Task SavePlayerName(string key, string text)
+        {
         }
 
         public async Task SendBid(string user, string bid)

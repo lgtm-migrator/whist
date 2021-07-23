@@ -26,7 +26,9 @@ export default function App(props) {
 
     return (
       <Layout>
-        <Route exact path="/"><Home listOfTables={listOfTables}
+        <Route exact path="/">
+            <Home
+                listOfTables={listOfTables}
                 selectTable={(table) => {
                     connection.send("SelectTable", table);
                     history.push(`/lobby/${table}`);
@@ -34,7 +36,10 @@ export default function App(props) {
                 saveTableName={(key, text) =>
                     connection.send("SaveTableName", key, text)
                 } /></Route>
-        <Route path="/lobby"><Lobby playerNames={players}/></Route>
+        <Route path="/lobby">
+            <Lobby
+                playerNames={players}
+                savePlayerName={(key, text) => connection.send("SavePlayerName", key, text)}/></Route>
         <Route path="/game"><Game /></Route>
       </Layout>
     );
