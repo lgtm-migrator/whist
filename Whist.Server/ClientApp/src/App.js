@@ -11,13 +11,13 @@ import "./custom.css"
 
 export default function App(props) {
     const [connection, setConnection] = useState(null);
-    const [tableNames, setTableNames] = useState([]);
+    const [listOfTables, setListOfTables] = useState([]);
     const [players, setPlayerNames] = useState([]);
     const history = useHistory();
 
     useEffect(() => {
         const newConnection = connect({
-            updateListOfTables: setTableNames,
+            updateListOfTables: setListOfTables,
             updatePlayersAtTable: setPlayerNames,
             receiveDealtCards: (cards) => { alert(cards); }
         });
@@ -26,10 +26,14 @@ export default function App(props) {
 
     return (
       <Layout>
-        <Route exact path="/"><Home tableNames={tableNames} selectTable={(table) => {
-            connection.send("SelectTable", table);
-            history.push(`/lobby/${table}`);
-        }} /></Route>
+        <Route exact path="/"><Home listOfTables={listOfTables}
+                selectTable={(table) => {
+                    connection.send("SelectTable", table);
+                    history.push(`/lobby/${table}`);
+                }}
+                saveTableName={(key, text) =>
+                    connection.send("SaveTableName", key, text)
+                } /></Route>
         <Route path="/lobby"><Lobby playerNames={players}/></Route>
         <Route path="/game"><Game /></Route>
       </Layout>

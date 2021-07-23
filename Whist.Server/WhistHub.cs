@@ -13,6 +13,10 @@ namespace Whist.Server
         private const string TableName = "Table";
         // TODO(jorgen.fogh): This only works, when there is only a single instance of WhistHub:
         private static readonly List<string> ConnectionIdsAtTable = new();
+        private static readonly List<KeyAndText> TableNames = new()
+        {
+            new() { Key = TableName + "Key", Text = TableName }
+        };
 
         public WhistHub(GameConductorService gameConductorService)
         {
@@ -22,7 +26,7 @@ namespace Whist.Server
         public override async Task OnConnectedAsync()
         {
             await this.Groups.AddToGroupAsync(this.Context.ConnectionId, TableName);
-            await this.Clients.Group(TableName).UpdateListOfTables(new List<string>(){ "TableName" });
+            await this.Clients.Group(TableName).UpdateListOfTables(TableNames);
             await base.OnConnectedAsync();
         }
 
@@ -42,6 +46,12 @@ namespace Whist.Server
             if (ConnectionIdsAtTable.Count == 4)
                 this._gameConductorService.StartGame(ConnectionIdsAtTable);
             await this.Clients.Group(TableName).UpdatePlayersAtTable(ConnectionIdsAtTable);
+        }
+
+        public async Task SaveTableName(string key, string text)
+        {
+            TableNames[0].Text = text;
+            await this.Clients.Group(TableName).UpdateListOfTables(TableNames);
         }
 
         public async Task SendBid(string user, string bid)

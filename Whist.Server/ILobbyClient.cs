@@ -8,6 +8,6 @@ namespace Whist.Server
     {
         Task UpdatePlayersAtTable(IEnumerable<string> players);
 
-        Task UpdateListOfTables(IEnumerable<string> tables);
+        Task UpdateListOfTables(IEnumerable<KeyAndText> tables);
     }
 }
