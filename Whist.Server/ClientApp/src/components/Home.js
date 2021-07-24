@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { EditableText } from "./EditableText";
 
 export function Home(props) {
