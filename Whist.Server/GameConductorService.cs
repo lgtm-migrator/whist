@@ -8,13 +8,13 @@ namespace Whist.Server
     using Microsoft.Extensions.Hosting;
     using Rules;
 
-    // TODO(jorgen.fogh): Extract a class for the IMovePrompter?
+    // TODO(jrgfogh): Extract a class for the IMovePrompter?
     public sealed class GameConductorService : BackgroundService, IMovePrompter
     {
         private readonly IHubContext<WhistHub, IWhistClient> _hubContext;
         private TaskCompletionSource<string> _promise;
         private List<string> _connectionIdsAtTable;
-        // TODO(jorgen.fogh): Rename!
+        // TODO(jrgfogh): Rename!
         private Thread _gameConductorThread;
 
         public GameConductorService(IHubContext<WhistHub, IWhistClient> hubContext)
@@ -70,8 +70,8 @@ namespace Whist.Server
             await this.GetClient(playerIndex).ReceiveDealtCards(cards.Select(c => c.ToString()));
         }
 
-        // TODO(jorgen.fogh): Unduplicate!
-        // TODO(jorgen.fogh): Check that we are expecting the message we received.
+        // TODO(jrgfogh): Unduplicate!
+        // TODO(jrgfogh): Check that we are expecting the message we received.
         public void ReceiveBid(string bid)
         {
             this._promise.TrySetResult(bid);

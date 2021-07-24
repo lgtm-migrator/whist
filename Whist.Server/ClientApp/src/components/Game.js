@@ -1,5 +1,4 @@
-﻿import React from "react";
-import AcePicker from "./AcePicker.js";
+﻿import AcePicker from "./AcePicker.js";
 import "./Game.css";
 
 export function Game(props) {

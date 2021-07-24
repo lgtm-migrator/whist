@@ -12,7 +12,7 @@
     background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
     border: 2px solid #333333;
     height: 100%;
-    /* TODO(jorgen.fogh): Find out how to size the game area. */
+    /* TODO(jrgfogh): Find out how to size the game area. */
     min-height: 750px;
     position: relative;
 }

@@ -3,7 +3,7 @@ namespace Whist.Server
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public interface IWhistClient
+    public interface IWhistClient : ILobbyClient
     {
         Task PromptForBid();
         Task PromptForTrump();

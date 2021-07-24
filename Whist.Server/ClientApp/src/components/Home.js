@@ -1,13 +1,18 @@
-import React, { Component } from "react";
+import { EditableText } from "./EditableText";
 
-export class Home extends Component {
-  static displayName = Home.name;
-
-  render () {
+export function Home(props) {
     return (
       <div>
-        <h1>Whist</h1>
+        <h1>Join a Table</h1>
+          <ul className="list-group">
+                {props.listOfTables.map(({ key, text: name }) => {
+                    return <li className="list-group-item list-group-item-action" key={key}>
+                        <EditableText text={name} saveEdit={text => props.saveTableName(key, text)} />
+                        <button className="btn btn-primary float-right"
+                            onClick={() => props.selectTable(key)}>Join Table!</button>
+                    </li>;
+                })}
+            </ul>
       </div>
     );
-  }
 }
