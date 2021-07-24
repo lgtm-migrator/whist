@@ -11,7 +11,7 @@
 
         private static int CardValue(Card candidate)
         {
-            // TODO(jorgen.fogh): What about jokers?
+            // TODO(jrgfogh): What about jokers?
             if (candidate.FaceValue == 1)
                 return 14;
             return candidate.FaceValue;

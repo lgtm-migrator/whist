@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    // TODO(jorgen.fogh): Test this!
+    // TODO(jrgfogh): Test this!
     public sealed class GameConductor
     {
         private readonly IMovePrompter _movePrompter;
@@ -21,17 +21,17 @@
         {
             await this.DealCards();
             var (winner, winningBid) = await this.ConductBiddingRound();
-            // TODO(jorgen.fogh): Announce the winner?
+            // TODO(jrgfogh): Announce the winner?
             var trump = await this.PromptForTrump(winner, winningBid);
-            // TODO(jorgen.fogh): I haven't yet written the code, which will use these variables:
+            // TODO(jrgfogh): I haven't yet written the code, which will use these variables:
             var ace = await this.PromptForBuddyAce(winner); // lgtm [cs/useless-assignment-to-local]
-            // TODO(jorgen.fogh): Exchange cards.
+            // TODO(jrgfogh): Exchange cards.
             var round = new PlayingRound(CreateTrickEvaluator(winningBid, trump[0])); // lgtm [cs/useless-assignment-to-local]
         }
 
         private async Task<(int Winner, string WinningBid)> ConductBiddingRound()
         {
-            // TODO(jorgen.fogh): Player 0 should not always start bidding.
+            // TODO(jrgfogh): Player 0 should not always start bidding.
             var round = new BiddingRound();
             while (!round.IsBiddingDone) round.Bid(await this._movePrompter.PromptForBid(round.PlayerToBid));
             return (round.Winner, round.WinningBid!);
@@ -57,7 +57,7 @@
             return await this._movePrompter.PromptForBuddyAce(winner);
         }
 
-        // TODO(jorgen.fogh): Move this factory method.
+        // TODO(jrgfogh): Move this factory method.
         private static TrickEvaluator CreateTrickEvaluator(string winningBid, char trump)
         {
             var bidKind = winningBid.Split(' ')[1];
