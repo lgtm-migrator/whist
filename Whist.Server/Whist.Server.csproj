@@ -11,9 +11,8 @@
     <Nullable>warnings</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.8" />
-    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.9.2" />
-    <PackageReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.10" />
+    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.18.3" />
   </ItemGroup>
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
@@ -23,9 +22,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Whist.Rules\Whist.Rules.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
