@@ -32,7 +32,7 @@ export default function App(props) {
                     listOfTables={listOfTables}
                     selectTable={(table) => {
                         connection.send("SelectTable", table);
-                        navigate.push(`/lobby/${table}`);
+                        navigate(`/lobby/${table}`);
                     }}
                     saveTableName={(key, text) =>
                         connection.send("SaveTableName", key, text)
