@@ -34,9 +34,8 @@ stages:
 - stage: CD
   displayName: CD Stage
   dependsOn: CI
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'),
-      # NOTE(jorgen.fogh): Deployment has been switched off until I get a new Azure subscription:
-      False)
+  # NOTE(jorgen.fogh): Deployment has been switched off until I get a new Azure subscription:
+  condition: and(False, succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   jobs:
   - deployment: deploy
     displayName: Deploy
