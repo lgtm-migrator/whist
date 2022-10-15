@@ -20,7 +20,8 @@ namespace Whist.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSignalR().AddAzureSignalR();
+            // TODO(jorgen.fogh): Reenable, once Whist is back on Azure:
+            services.AddSignalR();//.AddAzureSignalR();
 
             services.AddSingleton<GameConductorService>();
             services.AddHostedService<GameConductorServiceWrapper>();
