@@ -28,7 +28,7 @@ namespace Whist.Server.Tests
         }
 
         private static string ServerPath() =>
-            Path.GetFullPath(Path.Join(TestContext.CurrentContext.TestDirectory, @"..\..\..\..\Whist.Server"));
+            Path.GetFullPath(Path.Join(TestContext.CurrentContext.TestDirectory, @"../../../../Whist.Server"));
 
         [SetUp]
         public async Task Setup()
